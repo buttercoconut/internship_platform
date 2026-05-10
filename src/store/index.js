@@ -1,8 +1,10 @@
 import { createStore } from 'vuex'
 
-export default createStore({
-  state: {
-    user: null,
+const store = createStore({
+  state() {
+    return {
+      user: null,
+    }
   },
   mutations: {
     setUser(state, payload) {
@@ -14,7 +16,6 @@ export default createStore({
       commit('setUser', user)
     },
   },
-  getters: {
-    isAuthenticated: (state) => !!state.user,
-  },
 })
+
+export default store

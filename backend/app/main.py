@@ -1,29 +1,11 @@
-"""FastAPI application entry point."""
-
+# FastAPI main entry point
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from app.routes import internship
 
-# Import routers
-from .routes.application_routes import router as application_router
-
-# Create FastAPI instance
-app = FastAPI(
-    title="Internship Platform API",
-    description="API for managing internship applications, approvals, and reviews.",
-    version="0.1.0",
-)
-
-# Allow CORS for frontend development
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production restrict this
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app = FastAPI(title="Internship Platform API")
 
 # Include routers
-app.include_router(application_router)
+app.include_router(internship.router, prefix="/api/internship", tags=["internship"])
 
 # Root endpoint
 @app.get("/")

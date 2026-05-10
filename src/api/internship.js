@@ -1,15 +1,9 @@
-import axios from 'axios'
+import apiClient from './axios'
 
-const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api',
-  timeout: 5000,
-})
+export const fetchInternships = () => {
+  return apiClient.get('/internships')
+}
 
-export default {
-  getInternships() {
-    return apiClient.get('/internships/')
-  },
-  getInternship(id) {
-    return apiClient.get(`/internships/${id}/`)
-  },
+export const createInternship = (data) => {
+  return apiClient.post('/internships', data)
 }
